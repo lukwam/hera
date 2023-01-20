@@ -4,6 +4,7 @@ steps:
   - id: install-requirements
     name: python:3.11-slim
     entrypoint: pip
+    dir: package
     args:
     - install
     - -r
@@ -13,6 +14,7 @@ steps:
   - id: build-python-package
     name: python:3.11-slim
     entrypoint: python
+    dir: package
     args:
     - setup.py
     - sdist
@@ -21,6 +23,7 @@ steps:
   - id: twine-upload-dist
     name: python:3.11-slim
     entrypoint: python
+    dir: package
     args:
     - -m
     - twine
