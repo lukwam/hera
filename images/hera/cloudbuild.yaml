@@ -1,0 +1,26 @@
+---
+steps:
+
+  - name: gcr.io/cloud-builders/docker
+    dir: images/hera
+    args:
+      - build
+      - -t
+      - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/docker/hera:${SHORT_SHA}
+      - -f
+      - Dockerfile
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    dir: images/hera
+    args:
+      - build
+      - -t
+      - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/docker/hera:latest
+      - -f
+      - Dockerfile
+      - .
+
+images:
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/docker/hera:${SHORT_SHA}
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/docker/hera:latest

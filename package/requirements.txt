@@ -1,0 +1,5 @@
+build
+keyrings.google-artifactregistry-auth
+setuptools
+twine
+wheel

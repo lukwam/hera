@@ -1,0 +1,30 @@
+---
+steps:
+
+  - id: install-requirements
+    name: python:3.11-slim
+    entrypoint: pip
+    args:
+    - install
+    - -r
+    - requirements.txt
+    - --user
+
+  - id: build-python-package
+    name: python:3.11-slim
+    entrypoint: python
+    args:
+    - setup.py
+    - sdist
+    - bdist_wheel
+
+  - id: twine-upload-dist
+    name: python:3.11-slim
+    entrypoint: python
+    args:
+    - -m
+    - twine
+    - upload
+    - --repository-url
+    - https://${_REGION}-python.pkg.dev/${PROJECT_ID}/python/
+    - dist/*
