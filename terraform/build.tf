@@ -76,6 +76,7 @@ resource "google_cloudbuild_trigger" "deploy_hello_world_function" {
   }
 
   substitutions = {
+    _REGION = var.region
   }
 
 }
