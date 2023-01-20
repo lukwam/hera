@@ -1,0 +1,5 @@
+billing_account = "012345-678910-ABCDEF"
+folder_id       = "1234567890"
+project_id      = "my-project-id"
+project_name    = "My Project Name"
+region          = "us-central1"
