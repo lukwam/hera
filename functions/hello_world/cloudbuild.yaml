@@ -1,0 +1,14 @@
+---
+steps:
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+    dir: functions/hello_world
+    entrypoint: gcloud
+    args:
+      - functions
+      - deploy
+      - hello_world
+      - --project=${PROJECT_ID}
+      - --region=${REGION}
+      - --runtime=python311
+      - --trigger-http
+      - -q

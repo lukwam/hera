@@ -49,3 +49,33 @@ resource "google_cloudbuild_trigger" "build_python_package" {
   }
 
 }
+
+resource "google_cloudbuild_trigger" "deploy_hello_world_function" {
+  provider           = google
+  name               = "deploy-hello-world-function"
+  description        = "Deploy hello_world Function"
+  filename           = "functions/hello_world/cloudbuild.yaml"
+  project            = google_project_service.service["cloudbuild.googleapis.com"].project
+  include_build_logs = "INCLUDE_BUILD_LOGS_WITH_STATUS"
+
+  included_files = [
+    "functions/hello_world/**",
+  ]
+  ignored_files = [
+    "functions/hello_world/*.md",
+    "functions/hello_world/*.sh",
+    "functions/hello_world/Dockerfile",
+  ]
+
+  github {
+    name  = "hera"
+    owner = "lukwam"
+    push {
+      branch = "^main$"
+    }
+  }
+
+  substitutions = {
+  }
+
+}
