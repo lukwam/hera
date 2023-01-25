@@ -2,6 +2,16 @@
 steps:
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
     dir: functions/hello_world
+    entrypoint: bash
+    args:
+      - ../../scripts/prepreqs.sh
+    env:
+      - PROJECT=${PROJECT_ID}
+      - REGION=${_REGION}
+      - REPO=python
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+    dir: functions/hello_world
     entrypoint: gcloud
     args:
       - functions
