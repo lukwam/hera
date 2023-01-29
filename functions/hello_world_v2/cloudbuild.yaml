@@ -6,7 +6,7 @@ steps:
     args:
       - functions
       - deploy
-      - hello_world_v2
+      - hello-world-v2
       - --gen2
       - --project=${PROJECT_ID}
       - --region=${_REGION}
